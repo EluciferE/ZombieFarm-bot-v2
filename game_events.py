@@ -18,6 +18,8 @@ def get_time():
 
 
 def mouse_click(x, y):
+    hover(Point(x, y))
+    sleep(1)
     click(Point(x, y))
 
 
@@ -72,7 +74,8 @@ def pick_up_resources(web):
     x, y, obj = default_check(game)
     while x > 0:
         n += 1
-        mouse_click(x + 20, y + 20)
+        mouse_click(x + 15, y + 14)
+        #game.save('results/episode' + str(n) + '.png')
         amount[obj] += 1
         print(get_time() + 'Took {}'.format(resources[obj]))
         game = screen(web)

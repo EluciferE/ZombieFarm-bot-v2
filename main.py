@@ -1,9 +1,11 @@
-from game_events import *
+from game_events import start, pick_up_resources
+
 
 web = start()
 
-for _ in range(10):
-    pick_up_resources(web)
+
+pick_up_resources(web)
 
 web.close()
+web.quit()
 print("Quited from browser")

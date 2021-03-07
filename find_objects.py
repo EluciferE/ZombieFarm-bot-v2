@@ -22,6 +22,7 @@ def recognize(img, obj):
 
     x, y = answer[1], answer[0]
     chance = result[y][x][0]
+
     print(x, y, chance)
 
     return x, y, chance
@@ -32,8 +33,9 @@ def default_check(img):
     array = [wood, stone, chest]
     for obj in array:
         x, y, chance = recognize(img, obj)
-        if chance > 0.80:
+        if chance > 0.9:
             return x, y, array.index(obj)
+    return -1, -1, None
 
 
 def find_something(img, name):
@@ -47,7 +49,7 @@ def find_something(img, name):
         return -1, -1
 
     x, y, chance = recognize(img, obj)
-    if chance > 0.75:
+    if chance > 0.80:
         return x, y
     return -1, -1
 
