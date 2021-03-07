@@ -22,6 +22,7 @@ def recognize(img, obj):
 
     x, y = answer[1], answer[0]
     chance = result[y][x][0]
+    print(x, y, chance)
 
     return x, y, chance
 

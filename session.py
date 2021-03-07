@@ -15,7 +15,7 @@ def create_session():
             if cookie['name'] == 'remixusid':
                 GOT_COOKIE = True
 
-        pickle.dump(web.get_cookies(), open("session.pkl", "wb"))
+    pickle.dump(web.get_cookies(), open("session.pkl", "wb"))
 
     web.close()
 
