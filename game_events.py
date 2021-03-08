@@ -79,6 +79,7 @@ def pick_up_resources(web):
     while x > 0:
         mouse_click(x + 15, y + 14)
         resources[obj] += 1
+        sleep(15)
         game = screen(web)
         x, y, obj = default_check(game)
     if n % 10 == 0:
