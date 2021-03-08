@@ -5,7 +5,8 @@ from find_objects import *
 from time import *
 import os
 
-resources = ['wood', 'stone', 'chest']
+resources = {'wood': 0, 'stone': 0, 'chest': 0}
+n = 0
 
 
 # return time like [hh:mm:ss]
@@ -21,6 +22,8 @@ def mouse_click(x, y):
     hover(Point(x, y))
     sleep(1)
     click(Point(x, y))
+    sleep(0.3)
+    hover(Point(3, 3))
 
 
 def start():
@@ -68,15 +71,17 @@ def start():
 
 
 def pick_up_resources(web):
-    n = 0
-    amount = [0, 0, 0]
+    global n
+    n += 1
+
     game = screen(web)
     x, y, obj = default_check(game)
     while x > 0:
-        n += 1
         mouse_click(x + 15, y + 14)
-        #game.save('results/episode' + str(n) + '.png')
-        amount[obj] += 1
-        print(get_time() + 'Took {}'.format(resources[obj]))
+        resources[obj] += 1
         game = screen(web)
         x, y, obj = default_check(game)
+    if n % 10 == 0:
+        print(get_time() + '\t\t\tResults:')
+        print('\t\tWoods: {}\t\tStones: {}\t\tChests: {}'.format(resources['wood'], resources['stone'],
+                                                                 resources['chest'], ))
