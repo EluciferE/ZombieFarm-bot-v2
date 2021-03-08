@@ -23,18 +23,17 @@ def recognize(img, obj):
     x, y = answer[1], answer[0]
     chance = result[y][x][0]
 
-    print(x, y, chance)
-
     return x, y, chance
 
 
 # compare pixels with images of objects
 def default_check(img):
     array = [wood, stone, chest]
+    names = ['wood', 'stone', 'chest']
     for obj in array:
         x, y, chance = recognize(img, obj)
         if chance > 0.9:
-            return x, y, array.index(obj)
+            return x, y, names[array.index(obj)]
     return -1, -1, None
 
 
