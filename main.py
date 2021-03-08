@@ -5,7 +5,7 @@ web = start()
 try:
     while True:
         pick_up_resources(web)
-        sleep(10)
+        sleep(5)
 finally:
     web.close()
     web.quit()
