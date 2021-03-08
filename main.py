@@ -1,11 +1,12 @@
 from game_events import start, pick_up_resources
-
+from time import sleep
 
 web = start()
-
-
-pick_up_resources(web)
-
-web.close()
-web.quit()
-print("Quited from browser")
+try:
+    while True:
+        pick_up_resources(web)
+        sleep(10)
+finally:
+    web.close()
+    web.quit()
+    print("Quited from browser")
