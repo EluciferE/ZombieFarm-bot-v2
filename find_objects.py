@@ -32,7 +32,7 @@ def default_check(img):
     names = ['wood', 'stone', 'chest']
     for obj in array:
         x, y, chance = recognize(img, obj)
-        if chance > 0.9:
+        if chance > 0.95:
             return x, y, names[array.index(obj)]
     return -1, -1, None
 
