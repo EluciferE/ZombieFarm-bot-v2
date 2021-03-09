@@ -1,5 +1,5 @@
-selenium~=3.141.0
-Pillow~=7.2.0
-helium~=3.0.5
-numpy~=1.19.4
-scikit-image~=0.18.1
+selenium==3.141.0
+pillow==7.2.0
+helium==3.0.5
+numpy==1.19.4
+scikit-image==0.18.1
