@@ -9,6 +9,8 @@ cross = Image.open("img/cross.png")
 full = Image.open("img/full.png")
 zoom = Image.open("img/zoom.png")
 
+dead_zones = []
+
 
 # try to recognize object on picture with start in x,y
 def recognize(img, obj):
@@ -17,6 +19,11 @@ def recognize(img, obj):
 
     result = match_template(img, obj)
     result = np.round(result, 3)
+
+    for zone in dead_zones:
+        for x in range(zone[0], zone[2]):
+            for y in range(zone[1], zone[3]):
+                result[y][x] = 0
 
     answer = np.unravel_index(np.argmax(result), result.shape)
 
@@ -52,5 +59,3 @@ def find_something(img, name):
         return x, y
     return -1, -1
 
-
-#print(recognize(Image.open('results/episode2.png'), wood))
