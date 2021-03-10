@@ -12,8 +12,13 @@ zoom = Image.open("img/zoom.png")
 
 dead_zones = []
 
+'''
+Try to recognize object on picture with start in x,y
+return array of (x, y) with objects that have chance more
+than chance_sure. Max len of array is "n"
+'''
 
-# try to recognize object on picture with start in x,y
+
 def recognize(img, obj, chance_sure, n=10):
     objects = []
     img = np.asarray(img)
