@@ -77,14 +77,12 @@ def pick_up_resources(web):
     n += 1
 
     game = screen(web)
-    x, y, obj = default_check(game)
-    while x > 0:
+    answer = default_check(game)
+    for resource in answer:
+        x, y, obj = resource
         mouse_click(x + 15, y + 14)
-        dead_zones.append([x - 5, y - 5, x + 30, y + 30, datetime.now()])
 
         resources[obj] += 1
-        game = screen(web)
-        x, y, obj = default_check(game)
 
     if n % 10 == 0:
         print(get_time() + '\t\t\tResults:')
