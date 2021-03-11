@@ -1,13 +1,13 @@
-from game_events import start, pick_up_resources, update_dead_zones
+from module import Game
 from time import sleep
 
-web = start()
+game = Game()
+game.start()
+
 try:
     while True:
-        pick_up_resources(web)
-        update_dead_zones()
+        game.pick_up_resources()
+        print(game.resources)
         sleep(5)
 finally:
-    web.close()
-    web.quit()
-    print("Quited from browser")
+    game.close_browser()
