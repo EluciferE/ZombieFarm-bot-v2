@@ -3,15 +3,8 @@ import numpy as np
 from datetime import datetime
 from skimage.feature import match_template
 
-wood = Image.open("img/wood.png")
-stone = Image.open("img/stone.png")
-chest = Image.open("img/chest.png")
-cross = Image.open("img/cross.png")
-full = Image.open("img/full.png")
-zoom = Image.open("img/zoom.png")
-
 dead_zones = []
-
+dead_zone_time = 15
 '''
 Try to recognize object on picture with start in x,y
 return array of (x, y) with objects that have chance more
@@ -20,6 +13,8 @@ than chance_sure. Max len of array is "n"
 
 
 def recognize(img, obj, chance_sure, n=10):
+    update_dead_zones()
+
     objects = []
     img = np.asarray(img)
 
@@ -50,37 +45,6 @@ def recognize(img, obj, chance_sure, n=10):
     return objects
 
 
-def find_something(img, name):
-    if name == 'cross':
-        obj = cross
-    elif name == 'full':
-        obj = full
-    elif name == 'zoom':
-        obj = zoom
-    else:
-        return -1, -1
-
-    ans = recognize(img, obj, 0.8, 1)
-    if ans:
-        return ans[0][0], ans[0][1]
-    return -1, -1
-
-
-# compare pixels with images of objects
-def default_check(img):
-    objects = []
-    array = [wood, stone, chest]
-    names = ['wood', 'stone', 'chest']
-    for obj in range(len(array)):
-        answer = recognize(img, array[obj], 0.95)
-        # go throw founded objects
-        # add x, y, name to return
-        if answer:
-            for something in answer:
-                objects.append([something[0], something[1], names[obj]])
-    return objects
-
-
 def null_with_dead_zones(result):
     for zone in dead_zones:
         for x in range(zone[0], zone[2]):
@@ -92,3 +56,17 @@ def null_with_adding_zone(x1, y1, x2, y2, result):
     for nx in range(x1, x2):
         for ny in range(y1, y2):
             result[ny][nx] = 0
+
+
+def update_dead_zones():
+    now = datetime.now()
+    for_remove = []
+
+    for zone in dead_zones:
+        delta = now - zone[4]
+
+        if delta.seconds > dead_zone_time:
+            for_remove.append(zone)
+
+    for zone in for_remove:
+        dead_zones.remove(zone)
