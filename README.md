@@ -1,6 +1,6 @@
 # ZombieFarm-bot-v2
 
-Doesn`t work right now
+Doesn`t work right now (since 12.03.2021)
 
 ```
 Download WebDriver FireFox:
