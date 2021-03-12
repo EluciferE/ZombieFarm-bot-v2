@@ -12,7 +12,7 @@ def create_session():
 
         cookies = web.get_cookies()
         for cookie in cookies:
-            if cookie['name'] == 'remixusid':
+            if cookie['name'] == 'remixstid':
                 GOT_COOKIE = True
 
     pickle.dump(web.get_cookies(), open("session.pkl", "wb"))
