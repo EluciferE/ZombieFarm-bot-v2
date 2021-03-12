@@ -112,5 +112,12 @@ class Game:
                     mouse_click(x + array[obj].size[0] // 2, y + array[obj].size[1] // 2)
         self.screenshot()
 
+    def print_resources(self):
+        print('――――――――――――――――――――――――')
+        print('\t\t\t' + get_time())
+        for a, b in self.resources.items():
+            print("{}: {}".format(a, b), end='\t\t')
+        print('\n――――――――――――――――――――――――')
+
     def close_browser(self):
         self.web.close()
